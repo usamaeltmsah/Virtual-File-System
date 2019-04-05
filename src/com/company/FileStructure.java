@@ -42,7 +42,7 @@ public class FileStructure {
     }
 
     boolean Search(String fileName, FolderStructure path) {
-        if ()
+        if (path.filesToFoldersMap.get(fileName) != null)
             return true;
         return false;
     }
@@ -51,7 +51,9 @@ public class FileStructure {
         //If file isn't exist, then create it!
         if(!Search(fileName, path))
         {
-            
+//            path.getFiles().add(new FileStructure(fileName));
+            path.filesToFoldersMap.put(fileName, path);
+            return true;
         }
 
         return false;
@@ -61,7 +63,8 @@ public class FileStructure {
         //If file exists, delete it!
         if(Search(fileName, path))
         {
-            
+            path.filesToFoldersMap.remove(fileName, path);
+            return true;
         }
         return false;
     }
