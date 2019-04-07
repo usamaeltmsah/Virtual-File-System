@@ -3,8 +3,6 @@ package com.company;
 import java.util.*;
 
 public class indexedAllocation extends allocationMethod {
-//    HashMap<Integer, ArrayList> blockToBlockListMap = new HashMap<>();
-
     @Override
     public boolean createFile(FolderStructure directory, String name, int size, ArrayList<Space> spaces,
                               ArrayList<Boolean> state) {
@@ -59,16 +57,6 @@ public class indexedAllocation extends allocationMethod {
             //Update the size after deletion
             file.setSize(file.getAllocatedBlocks().size());
         }
-
-//        if(searchFile(name, directory))
-//        {
-//            FileStructure file = (FileStructure) directory.getKeyByValue(directory.filesToFoldersMap, directory.);
-////            for (int i = 0; i < file.allocatedBlocks.size(); i++) {
-////                state.set(file.allocatedBlocks.get(i), false);
-////            }
-//            directory.filesToFoldersMap.remove(name, directory);
-//            return true;
-//        }
         return false;
     }
 
@@ -97,16 +85,5 @@ public class indexedAllocation extends allocationMethod {
             return 1;
         }
         return 0;
-//            for (int i = 0; i < file.allocatedBlocks.size(); i++) {
-//                state.set(file.allocatedBlocks.get(i), false);
-//            }
-//            totalspace += file.allocatedBlocks.size();
-//
-//            for (Directory dire1 : dir.subDirectory) {
-//                totalspace += deleteDir(dire1, spaces, state);
-//            }
-//            return true;
-//        }
-//        return false;
     }
 }
