@@ -1,21 +1,28 @@
 package com.company;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+
 
 public class FolderStructure {
     private String name;
-
-    HashMap<String, FolderStructure> folderToSubFoldersMap = new HashMap<>();
-
-    HashMap<String, FolderStructure> filesToFoldersMap = new HashMap<>();
+    // list of files
+    private ArrayList<FileStructure> files = new ArrayList<>();
+    // list of sub folders
+    private ArrayList<FolderStructure> sub_folders = new ArrayList<>();
+    boolean deleted;
 
     public FolderStructure()
     {
         this.name = "";
+        sub_folders = new ArrayList<>();
+        files = new ArrayList<>();
     }
 
     public FolderStructure(String name) {
         this.name = name;
+        sub_folders = new ArrayList<>();
+        files = new ArrayList<>();
     }
 
     public String getName() {
@@ -27,32 +34,27 @@ public class FolderStructure {
         this.name = name;
     }
 
-    boolean Search(String folderName, FolderStructure path) {
-        if (folderToSubFoldersMap.get(folderName) != null)
-        {
-            return true;
-        }
-        return false;
+    public ArrayList<FileStructure> getFiles() {
+        return files;
     }
 
-    public boolean createFolder(String folderName, FolderStructure path)
-    {
-        //If folder isn't exist, so create it!
-        if (!Search(folderName, path))
-        {
-            folderToSubFoldersMap.put(folderName, path);
-            return true;
-        }
-        return false;
+    public void setFiles(ArrayList<FileStructure> files) {
+        this.files = files;
     }
 
-    boolean deleteFolder(String folderName, FolderStructure path) {
-        //If folder exists, delete it!
-        if(Search(folderName, path))
-        {
-            path.folderToSubFoldersMap.remove(folderName, path);
-            return true;
-        }
-        return false;
+    public ArrayList<FolderStructure> getSub_folders() {
+        return sub_folders;
+    }
+
+    public void setSub_folders(ArrayList<FolderStructure> sub_folders) {
+        this.sub_folders = sub_folders;
+    }
+
+    public boolean isDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
     }
 }
