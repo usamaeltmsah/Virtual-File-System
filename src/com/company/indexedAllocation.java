@@ -28,6 +28,11 @@ public class indexedAllocation extends allocationMethod {
                 }
             }
         }
+        //If no enough space (allocation failed)
+        for (int i:
+             allocatedBlocks) {
+            state.set(i, false);
+        }
         return false;
     }
 
@@ -42,8 +47,8 @@ public class indexedAllocation extends allocationMethod {
     }
 
     @Override
-    public boolean deleteFile(FolderStructure directory, String name,
-                              ArrayList<Boolean> state) {
+    public int deleteFile(FolderStructure directory, String name, ArrayList<Space> spaces,
+                          ArrayList<Boolean> state) {
         //If file exists, delete it!
         int index = searchFile(name, directory);
         FileStructure file = directory.getFiles().get(index);
@@ -56,19 +61,20 @@ public class indexedAllocation extends allocationMethod {
             file.setDeleted(true);
             //Update the size after deletion
             file.setSize(file.getAllocatedBlocks().size());
+            return file.getAllocatedBlocks().size();
         }
-        return false;
+        return 0;
     }
 
     @Override
-    public int deleteFolder(String name, FolderStructure directory, ArrayList<Boolean> state) {
-        int index = searchFolder(name, directory);
+    int deleteFolder(FolderStructure folder, FolderStructure directory, ArrayList<Space> spaces, ArrayList<Boolean> state) {
+        int index = searchFolder(folder.getName(), directory);
         int space = 0; // space = space of its folders + space of files
-        FolderStructure folder = directory.getSub_folders().get(index);
+        FolderStructure fold = directory.getSub_folders().get(index);
         if (index >= 0) {
             //Delete the files in this folder
             for (FileStructure f:
-            folder.getFiles()) {
+                    folder.getFiles()) {
                 for (int i = 0, siz = f.getAllocatedBlocks().size(); i < siz; i++) {
                     state.set(f.getAllocatedBlocks().get(i), false);
                 }
@@ -77,13 +83,11 @@ public class indexedAllocation extends allocationMethod {
                 space += f.getAllocatedBlocks().size();
             }
             for (FolderStructure fo:
-                 folder.getSub_folders()) {
-                String entireFolder = fo.getName();
-                space += deleteFolder(entireFolder, fo, state);
+                    folder.getSub_folders()) {
+                space += deleteFolder(fo, folder, spaces, state);
             }
             directory.getSub_folders().remove(index);
-            return 1;
         }
-        return 0;
+        return space;
     }
 }
