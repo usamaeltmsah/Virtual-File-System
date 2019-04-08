@@ -58,32 +58,4 @@ public class FileStructure {
     public void setDeleted(boolean deleted) {
         this.deleted = deleted;
     }
-      /*boolean Search(String fileName, FolderStructure path) {
-        if (path.filesToFoldersMap.get(fileName) != null)
-            return true;
-        return false;
-    }
-
-    boolean createFile(String fileName, FolderStructure path) {
-        //If file isn't exist, then create it!
-        if(!Search(fileName, path))
-        {
-            FileStructure file = new FileStructure(fileName);
-//            path.getFiles().add(new FileStructure(fileName));
-            path.filesToFoldersMap.put(file, path);
-            return true;
-        }
-
-        return false;
-    }
-
-    boolean deleteFile(String fileName, FolderStructure path) {
-        //If file exists, delete it!
-        if(Search(fileName, path))
-        {
-            path.filesToFoldersMap.remove(fileName, path);
-            return true;
-        }
-        return false;
-    }*/
 }
