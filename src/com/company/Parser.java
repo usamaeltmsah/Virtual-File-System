@@ -13,8 +13,6 @@ public class Parser {
             return;
         else
         {
-//            String[] dummy2;
-//            dummy2 = dummy[1].split("[/]");
             switch (dummy[0])
             {
                 case "CreateFile":
