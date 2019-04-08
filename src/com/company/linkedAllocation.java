@@ -14,12 +14,12 @@ public class linkedAllocation extends allocationMethod {
     }
 
     @Override
-    boolean deleteFile(FolderStructure directory, String name, ArrayList<Boolean> state) {
-        return false;
+    int deleteFile(FolderStructure directory, String name, ArrayList<Space> spaces, ArrayList<Boolean> state) {
+        return 0;
     }
 
     @Override
-    int deleteFolder(String name, FolderStructure directory, ArrayList<Boolean> state) {
+    int deleteFolder(FolderStructure folder, FolderStructure directory, ArrayList<Space> spaces, ArrayList<Boolean> state) {
         return 0;
     }
 }

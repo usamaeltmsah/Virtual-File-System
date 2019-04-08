@@ -26,8 +26,8 @@ public abstract class allocationMethod {
 
     abstract boolean createFolder(FolderStructure directory, String name);
 
-    abstract boolean deleteFile(FolderStructure directory, String name, ArrayList<Boolean> state);
+    abstract int deleteFile(FolderStructure directory, String name, ArrayList<Space> spaces, ArrayList<Boolean> state);
 
-    abstract int deleteFolder(String name, FolderStructure directory, ArrayList<Boolean> state);
+    abstract int deleteFolder(FolderStructure folder, FolderStructure directory, ArrayList<Space> spaces, ArrayList<Boolean> state);
 
 }
