@@ -3,8 +3,6 @@ package com.company;
 import java.util.*;
 
 public class indexedAllocation extends allocationMethod {
-//    HashMap<Integer, ArrayList> blockToBlockListMap = new HashMap<>();
-
     @Override
     public boolean createFile(FolderStructure directory, String name, int size, ArrayList<Space> spaces,
                               ArrayList<Boolean> state) {
